@@ -102,8 +102,8 @@ def joinFactors(factors):
 
 
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
-
+    for factor in factors :
+        print(factor)
 
 def eliminateWithCallTracking(callTrackingList=None):
 
@@ -130,7 +130,22 @@ def eliminateWithCallTracking(callTrackingList=None):
         Factor.unconditionedVariables
         Factor.conditionedVariables
         Factor.variableDomainsDict
+
+        https://www.cs.cmu.edu/~15281-f23/coursenotes/bayesnets/index.html 
+        def variable_elimination(query, e, bn):  
+            q = re-express query in terms of bn.CPTs  
+            factors = all probability tables in q  
+            for v in order(bn.variables):  
+                new_factor = make_factor(v, factors)  
+                factors.add(new_factor)  
+            return normalize(product of all factors)  
+      
+        def make_factor(v, factors):  
+            relevant_factors = [remove all f from factors if f depends on v]  
+            new_factor = product of all relevant_factors  
+            return sum_out(relevant_factors, v)  
         """
+        
         # autograder tracking -- don't remove
         if not (callTrackingList is None):
             callTrackingList.append(('eliminate', eliminationVariable))

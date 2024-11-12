@@ -223,15 +223,19 @@ def fillObsCPT(bayesNet, gameState):
     
     "*** YOUR CODE HERE ***"
     for housePos in gameState.getPossibleHouses():
+        print("Looking at house in position: ", housePos)
         for obsPos in gameState.getHouseWalls(housePos):
             obsVar = OBS_VAR_TEMPLATE % obsPos
             obsFactor = bn.Factor([obsVar], [FOOD_HOUSE_VAR, GHOST_HOUSE_VAR], bayesNet.variableDomainsDict())
-
+            print("    noticed a wall at position: ", obsPos)
             # Get observed house position
-            observedHouse = 
             for assignment in obsFactor.getAllPossibleAssignmentDicts():
-                print(assignment[GHOST_HOUSE_VAR])
+                print(assignment)
                 # CASE 1: None observation
+                if assignment[GHOST_HOUSE_VAR] in gameState.getPossibleHouses() :
+                    print("We have a ghost house in the assignment!")
+                if assignment[FOOD_HOUSE_VAR] in gameState.getPossibleHouses() :
+                    print("We have a food house in the assignment!")
                 # if observedHouse != assignment[GHOST_HOUSE_VAR] and observedHouse != assignment[FOOD_HOUSE_VAR] :
                 #     print("CASE 1: Certainty on the None observation")
 
