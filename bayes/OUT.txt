@@ -1,0 +1,444 @@
+Starting on 11-12 at 15:40:11
+
+Question q2
+===========
+
+bottomLeft  (3, 3) ; topLeft  (3, 7) ; bottomRight  (11, 3) ; topRight  (11, 7)
+*** FAIL: test_cases/q2/1-small-board.test
+***     First factor in which student answer differs from solution: P({'obs(4,4)'} | {'foodHouse', 'ghostHouse'})
+***     Student Factor:
+***     P(obs(4,4) | foodHouse, ghostHouse)
+***     
+***      | obs(4,4) |  foodHouse  |  ghostHouse |  Prob:  |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topLeft   | 0.3000000 |
+***      |   red    |   topLeft   |   topLeft   | 0.3000000 |
+***      |   none   |   topLeft   |   topLeft   | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topLeft   | 0.6000000 |
+***      |   red    |   topRight  |   topLeft   | 0.6000000 |
+***      |   none   |   topRight  |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topLeft   | 0.6000000 |
+***      |   red    |  bottomLeft |   topLeft   | 0.6000000 |
+***      |   none   |  bottomLeft |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topLeft   | 0.6000000 |
+***      |   red    | bottomRight |   topLeft   | 0.6000000 |
+***      |   none   | bottomRight |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topRight  | 0.3000000 |
+***      |   red    |   topLeft   |   topRight  | 0.3000000 |
+***      |   none   |   topLeft   |   topRight  | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topRight  | 0.7000000 |
+***      |   red    |   topRight  |   topRight  | 0.7000000 |
+***      |   none   |   topRight  |   topRight  | 0.7000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topRight  | 0.4000000 |
+***      |   red    |  bottomLeft |   topRight  | 0.4000000 |
+***      |   none   |  bottomLeft |   topRight  | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topRight  | 0.4000000 |
+***      |   red    | bottomRight |   topRight  | 0.4000000 |
+***      |   none   | bottomRight |   topRight  | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |  bottomLeft | 0.3000000 |
+***      |   red    |   topLeft   |  bottomLeft | 0.3000000 |
+***      |   none   |   topLeft   |  bottomLeft | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |  bottomLeft | 0.4000000 |
+***      |   red    |   topRight  |  bottomLeft | 0.4000000 |
+***      |   none   |   topRight  |  bottomLeft | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   red    |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   none   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |  bottomLeft | 0.4000000 |
+***      |   red    | bottomRight |  bottomLeft | 0.4000000 |
+***      |   none   | bottomRight |  bottomLeft | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   | bottomRight | 0.3000000 |
+***      |   red    |   topLeft   | bottomRight | 0.3000000 |
+***      |   none   |   topLeft   | bottomRight | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  | bottomRight | 0.4000000 |
+***      |   red    |   topRight  | bottomRight | 0.4000000 |
+***      |   none   |   topRight  | bottomRight | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft | bottomRight | 0.4000000 |
+***      |   red    |  bottomLeft | bottomRight | 0.4000000 |
+***      |   none   |  bottomLeft | bottomRight | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight | bottomRight | 0.7000000 |
+***      |   red    | bottomRight | bottomRight | 0.7000000 |
+***      |   none   | bottomRight | bottomRight | 0.7000000 |
+***     
+***     Correct Factor:
+***     P(obs(4,4) | foodHouse, ghostHouse)
+***     
+***      | obs(4,4) |  foodHouse  |  ghostHouse |  Prob:  |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topLeft   | 0.0e+00 |
+***      |   red    |   topLeft   |   topLeft   | 0.0e+00 |
+***      |   none   |   topLeft   |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topRight  | 0.0e+00 |
+***      |   red    |   topLeft   |   topRight  | 0.0e+00 |
+***      |   none   |   topLeft   |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |  bottomLeft | 0.4000000 |
+***      |   red    |   topLeft   |  bottomLeft | 0.6000000 |
+***      |   none   |   topLeft   |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   | bottomRight | 0.0e+00 |
+***      |   red    |   topLeft   | bottomRight | 0.0e+00 |
+***      |   none   |   topLeft   | bottomRight | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topLeft   | 0.0e+00 |
+***      |   red    |   topRight  |   topLeft   | 0.0e+00 |
+***      |   none   |   topRight  |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topRight  | 0.0e+00 |
+***      |   red    |   topRight  |   topRight  | 0.0e+00 |
+***      |   none   |   topRight  |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |  bottomLeft | 0.4000000 |
+***      |   red    |   topRight  |  bottomLeft | 0.6000000 |
+***      |   none   |   topRight  |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  | bottomRight | 0.0e+00 |
+***      |   red    |   topRight  | bottomRight | 0.0e+00 |
+***      |   none   |   topRight  | bottomRight | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topLeft   | 0.7000000 |
+***      |   red    |  bottomLeft |   topLeft   | 0.3000000 |
+***      |   none   |  bottomLeft |   topLeft   | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topRight  | 0.7000000 |
+***      |   red    |  bottomLeft |   topRight  | 0.3000000 |
+***      |   none   |  bottomLeft |   topRight  | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   red    |  bottomLeft |  bottomLeft | 0.3000000 |
+***      |   none   |  bottomLeft |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft | bottomRight | 0.7000000 |
+***      |   red    |  bottomLeft | bottomRight | 0.3000000 |
+***      |   none   |  bottomLeft | bottomRight | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topLeft   | 0.0e+00 |
+***      |   red    | bottomRight |   topLeft   | 0.0e+00 |
+***      |   none   | bottomRight |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topRight  | 0.0e+00 |
+***      |   red    | bottomRight |   topRight  | 0.0e+00 |
+***      |   none   | bottomRight |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |  bottomLeft | 0.4000000 |
+***      |   red    | bottomRight |  bottomLeft | 0.6000000 |
+***      |   none   | bottomRight |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight | bottomRight | 0.0e+00 |
+***      |   red    | bottomRight | bottomRight | 0.0e+00 |
+***      |   none   | bottomRight | bottomRight | 1.0000000 |
+***     
+bottomLeft  (3, 3) ; topLeft  (3, 11) ; bottomRight  (7, 3) ; topRight  (7, 11)
+*** FAIL: test_cases/q2/2-long-bottom.test
+***     First factor in which student answer differs from solution: P({'obs(4,4)'} | {'foodHouse', 'ghostHouse'})
+***     Student Factor:
+***     P(obs(4,4) | foodHouse, ghostHouse)
+***     
+***      | obs(4,4) |  foodHouse  |  ghostHouse |  Prob:  |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topLeft   | 0.3000000 |
+***      |   red    |   topLeft   |   topLeft   | 0.3000000 |
+***      |   none   |   topLeft   |   topLeft   | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topLeft   | 0.6000000 |
+***      |   red    |   topRight  |   topLeft   | 0.6000000 |
+***      |   none   |   topRight  |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topLeft   | 0.6000000 |
+***      |   red    |  bottomLeft |   topLeft   | 0.6000000 |
+***      |   none   |  bottomLeft |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topLeft   | 0.6000000 |
+***      |   red    | bottomRight |   topLeft   | 0.6000000 |
+***      |   none   | bottomRight |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topRight  | 0.3000000 |
+***      |   red    |   topLeft   |   topRight  | 0.3000000 |
+***      |   none   |   topLeft   |   topRight  | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topRight  | 0.7000000 |
+***      |   red    |   topRight  |   topRight  | 0.7000000 |
+***      |   none   |   topRight  |   topRight  | 0.7000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topRight  | 0.4000000 |
+***      |   red    |  bottomLeft |   topRight  | 0.4000000 |
+***      |   none   |  bottomLeft |   topRight  | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topRight  | 0.4000000 |
+***      |   red    | bottomRight |   topRight  | 0.4000000 |
+***      |   none   | bottomRight |   topRight  | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |  bottomLeft | 0.3000000 |
+***      |   red    |   topLeft   |  bottomLeft | 0.3000000 |
+***      |   none   |   topLeft   |  bottomLeft | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |  bottomLeft | 0.4000000 |
+***      |   red    |   topRight  |  bottomLeft | 0.4000000 |
+***      |   none   |   topRight  |  bottomLeft | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   red    |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   none   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |  bottomLeft | 0.4000000 |
+***      |   red    | bottomRight |  bottomLeft | 0.4000000 |
+***      |   none   | bottomRight |  bottomLeft | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   | bottomRight | 0.3000000 |
+***      |   red    |   topLeft   | bottomRight | 0.3000000 |
+***      |   none   |   topLeft   | bottomRight | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  | bottomRight | 0.4000000 |
+***      |   red    |   topRight  | bottomRight | 0.4000000 |
+***      |   none   |   topRight  | bottomRight | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft | bottomRight | 0.4000000 |
+***      |   red    |  bottomLeft | bottomRight | 0.4000000 |
+***      |   none   |  bottomLeft | bottomRight | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight | bottomRight | 0.7000000 |
+***      |   red    | bottomRight | bottomRight | 0.7000000 |
+***      |   none   | bottomRight | bottomRight | 0.7000000 |
+***     
+***     Correct Factor:
+***     P(obs(4,4) | foodHouse, ghostHouse)
+***     
+***      | obs(4,4) |  foodHouse  |  ghostHouse |  Prob:  |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topLeft   | 0.0e+00 |
+***      |   red    |   topLeft   |   topLeft   | 0.0e+00 |
+***      |   none   |   topLeft   |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topRight  | 0.0e+00 |
+***      |   red    |   topLeft   |   topRight  | 0.0e+00 |
+***      |   none   |   topLeft   |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |  bottomLeft | 0.4000000 |
+***      |   red    |   topLeft   |  bottomLeft | 0.6000000 |
+***      |   none   |   topLeft   |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   | bottomRight | 0.0e+00 |
+***      |   red    |   topLeft   | bottomRight | 0.0e+00 |
+***      |   none   |   topLeft   | bottomRight | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topLeft   | 0.0e+00 |
+***      |   red    |   topRight  |   topLeft   | 0.0e+00 |
+***      |   none   |   topRight  |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topRight  | 0.0e+00 |
+***      |   red    |   topRight  |   topRight  | 0.0e+00 |
+***      |   none   |   topRight  |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |  bottomLeft | 0.4000000 |
+***      |   red    |   topRight  |  bottomLeft | 0.6000000 |
+***      |   none   |   topRight  |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  | bottomRight | 0.0e+00 |
+***      |   red    |   topRight  | bottomRight | 0.0e+00 |
+***      |   none   |   topRight  | bottomRight | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topLeft   | 0.7000000 |
+***      |   red    |  bottomLeft |   topLeft   | 0.3000000 |
+***      |   none   |  bottomLeft |   topLeft   | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topRight  | 0.7000000 |
+***      |   red    |  bottomLeft |   topRight  | 0.3000000 |
+***      |   none   |  bottomLeft |   topRight  | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   red    |  bottomLeft |  bottomLeft | 0.3000000 |
+***      |   none   |  bottomLeft |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft | bottomRight | 0.7000000 |
+***      |   red    |  bottomLeft | bottomRight | 0.3000000 |
+***      |   none   |  bottomLeft | bottomRight | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topLeft   | 0.0e+00 |
+***      |   red    | bottomRight |   topLeft   | 0.0e+00 |
+***      |   none   | bottomRight |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topRight  | 0.0e+00 |
+***      |   red    | bottomRight |   topRight  | 0.0e+00 |
+***      |   none   | bottomRight |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |  bottomLeft | 0.4000000 |
+***      |   red    | bottomRight |  bottomLeft | 0.6000000 |
+***      |   none   | bottomRight |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight | bottomRight | 0.0e+00 |
+***      |   red    | bottomRight | bottomRight | 0.0e+00 |
+***      |   none   | bottomRight | bottomRight | 1.0000000 |
+***     
+bottomLeft  (3, 3) ; topLeft  (3, 11) ; bottomRight  (15, 3) ; topRight  (15, 11)
+*** FAIL: test_cases/q2/3-wide-inverted.test
+***     First factor in which student answer differs from solution: P({'obs(4,4)'} | {'foodHouse', 'ghostHouse'})
+***     Student Factor:
+***     P(obs(4,4) | foodHouse, ghostHouse)
+***     
+***      | obs(4,4) |  foodHouse  |  ghostHouse |  Prob:  |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topLeft   | 0.3000000 |
+***      |   red    |   topLeft   |   topLeft   | 0.3000000 |
+***      |   none   |   topLeft   |   topLeft   | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topLeft   | 0.6000000 |
+***      |   red    |   topRight  |   topLeft   | 0.6000000 |
+***      |   none   |   topRight  |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topLeft   | 0.6000000 |
+***      |   red    |  bottomLeft |   topLeft   | 0.6000000 |
+***      |   none   |  bottomLeft |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topLeft   | 0.6000000 |
+***      |   red    | bottomRight |   topLeft   | 0.6000000 |
+***      |   none   | bottomRight |   topLeft   | 0.6000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topRight  | 0.3000000 |
+***      |   red    |   topLeft   |   topRight  | 0.3000000 |
+***      |   none   |   topLeft   |   topRight  | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topRight  | 0.7000000 |
+***      |   red    |   topRight  |   topRight  | 0.7000000 |
+***      |   none   |   topRight  |   topRight  | 0.7000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topRight  | 0.4000000 |
+***      |   red    |  bottomLeft |   topRight  | 0.4000000 |
+***      |   none   |  bottomLeft |   topRight  | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topRight  | 0.4000000 |
+***      |   red    | bottomRight |   topRight  | 0.4000000 |
+***      |   none   | bottomRight |   topRight  | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |  bottomLeft | 0.3000000 |
+***      |   red    |   topLeft   |  bottomLeft | 0.3000000 |
+***      |   none   |   topLeft   |  bottomLeft | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |  bottomLeft | 0.4000000 |
+***      |   red    |   topRight  |  bottomLeft | 0.4000000 |
+***      |   none   |   topRight  |  bottomLeft | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   red    |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   none   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |  bottomLeft | 0.4000000 |
+***      |   red    | bottomRight |  bottomLeft | 0.4000000 |
+***      |   none   | bottomRight |  bottomLeft | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   | bottomRight | 0.3000000 |
+***      |   red    |   topLeft   | bottomRight | 0.3000000 |
+***      |   none   |   topLeft   | bottomRight | 0.3000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  | bottomRight | 0.4000000 |
+***      |   red    |   topRight  | bottomRight | 0.4000000 |
+***      |   none   |   topRight  | bottomRight | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft | bottomRight | 0.4000000 |
+***      |   red    |  bottomLeft | bottomRight | 0.4000000 |
+***      |   none   |  bottomLeft | bottomRight | 0.4000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight | bottomRight | 0.7000000 |
+***      |   red    | bottomRight | bottomRight | 0.7000000 |
+***      |   none   | bottomRight | bottomRight | 0.7000000 |
+***     
+***     Correct Factor:
+***     P(obs(4,4) | foodHouse, ghostHouse)
+***     
+***      | obs(4,4) |  foodHouse  |  ghostHouse |  Prob:  |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topLeft   | 0.0e+00 |
+***      |   red    |   topLeft   |   topLeft   | 0.0e+00 |
+***      |   none   |   topLeft   |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |   topRight  | 0.0e+00 |
+***      |   red    |   topLeft   |   topRight  | 0.0e+00 |
+***      |   none   |   topLeft   |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   |  bottomLeft | 0.4000000 |
+***      |   red    |   topLeft   |  bottomLeft | 0.6000000 |
+***      |   none   |   topLeft   |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |   topLeft   | bottomRight | 0.0e+00 |
+***      |   red    |   topLeft   | bottomRight | 0.0e+00 |
+***      |   none   |   topLeft   | bottomRight | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topLeft   | 0.0e+00 |
+***      |   red    |   topRight  |   topLeft   | 0.0e+00 |
+***      |   none   |   topRight  |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |   topRight  | 0.0e+00 |
+***      |   red    |   topRight  |   topRight  | 0.0e+00 |
+***      |   none   |   topRight  |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  |  bottomLeft | 0.4000000 |
+***      |   red    |   topRight  |  bottomLeft | 0.6000000 |
+***      |   none   |   topRight  |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |   topRight  | bottomRight | 0.0e+00 |
+***      |   red    |   topRight  | bottomRight | 0.0e+00 |
+***      |   none   |   topRight  | bottomRight | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topLeft   | 0.7000000 |
+***      |   red    |  bottomLeft |   topLeft   | 0.3000000 |
+***      |   none   |  bottomLeft |   topLeft   | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |   topRight  | 0.7000000 |
+***      |   red    |  bottomLeft |   topRight  | 0.3000000 |
+***      |   none   |  bottomLeft |   topRight  | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft |  bottomLeft | 0.7000000 |
+***      |   red    |  bottomLeft |  bottomLeft | 0.3000000 |
+***      |   none   |  bottomLeft |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   |  bottomLeft | bottomRight | 0.7000000 |
+***      |   red    |  bottomLeft | bottomRight | 0.3000000 |
+***      |   none   |  bottomLeft | bottomRight | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topLeft   | 0.0e+00 |
+***      |   red    | bottomRight |   topLeft   | 0.0e+00 |
+***      |   none   | bottomRight |   topLeft   | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |   topRight  | 0.0e+00 |
+***      |   red    | bottomRight |   topRight  | 0.0e+00 |
+***      |   none   | bottomRight |   topRight  | 1.0000000 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight |  bottomLeft | 0.4000000 |
+***      |   red    | bottomRight |  bottomLeft | 0.6000000 |
+***      |   none   | bottomRight |  bottomLeft | 0.0e+00 |
+***      --------------------------------------------------
+***      |   blue   | bottomRight | bottomRight | 0.0e+00 |
+***      |   red    | bottomRight | bottomRight | 0.0e+00 |
+***      |   none   | bottomRight | bottomRight | 1.0000000 |
+***     
+*** Tests failed.
+
+### Question q2: 0/3 ###
+
+
+Finished at 15:40:11
+
+Provisional grades
+==================
+Question q2: 0/3
+------------------
+Total: 0/3
+
+Your grades are NOT yet registered.  To register your grades, make sure
+to follow your instructor's guidelines to receive credit on your project.
+
