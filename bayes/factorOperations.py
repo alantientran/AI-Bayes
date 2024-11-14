@@ -115,8 +115,8 @@ def joinFactors(factors):
     cond = cond - uncond
 
     f = Factor(uncond, cond, factors[0].variableDomainsDict())
-    print("uncond: ", uncond)
-    print("cond: ", cond)
+    # print("uncond: ", uncond)
+    # print("cond: ", cond)
     
     # We could look through every combination of assignments in all of the
     # given factors, but that would be difficult to verify we are combining
@@ -198,7 +198,7 @@ def eliminateWithCallTracking(callTrackingList=None):
         
         for assign in f.getAllPossibleAssignmentDicts() : 
             prob = 0
-            print(assign)
+            # print(assign)
             for factor_assign in factor.getAllPossibleAssignmentDicts() :
                 # We want to find all matches of the smaller combination inside
                 # the larger CPT (i.e. Weather = Rain and Ground = Wet inside of a larger
@@ -280,8 +280,6 @@ def normalize(factor):
             unconditionedVariables.remove(var)
     
     f = Factor(unconditionedVariables, conditionedVariables, variableDomainsDict)
-
-
 
     for assign in f.getAllPossibleAssignmentDicts() :
         if (totalProb > 0) :
