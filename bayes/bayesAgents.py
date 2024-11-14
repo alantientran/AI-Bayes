@@ -376,8 +376,21 @@ class VPIAgent(BayesAgent):
         rightExpectedValue = 0
 
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
-
+        jointDistr = inference.inferenceByVariableElimination(self.bayesNet, HOUSE_VARS, evidence, eliminationOrder)
+        for assignment in jointDistr.getAllPossibleAssignmentDicts():
+            prob = jointDistr.getProbability(assignment)
+            ghostHousePos = assignment[GHOST_HOUSE_VAR]
+            foodHousePos = assignment[FOOD_HOUSE_VAR]
+            
+            if foodHousePos == TOP_RIGHT_VAL:
+                rightExpectedValue += prob * WON_GAME_REWARD
+            if foodHousePos == TOP_LEFT_VAL:
+                leftExpectedValue += prob * WON_GAME_REWARD
+            if ghostHousePos == TOP_RIGHT_VAL:
+                rightExpectedValue += prob * GHOST_COLLISION_REWARD
+            if ghostHousePos == TOP_LEFT_VAL:
+                leftExpectedValue += prob * GHOST_COLLISION_REWARD
+                
         return leftExpectedValue, rightExpectedValue
 
     def getExplorationProbsAndOutcomes(self, evidence):
@@ -442,7 +455,13 @@ class VPIAgent(BayesAgent):
         expectedValue = 0
 
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        explorationProbsAndOutcomes = self.getExplorationProbsAndOutcomes(evidence)
+
+        for prob, explorationEvidence in explorationProbsAndOutcomes:
+            evidence.update(explorationEvidence)
+            enterLeftVal, enterRightVal = self.computeEnterValues(evidence, enterEliminationOrder)
+            bestEntryVal = max(enterLeftVal, enterRightVal)
+            expectedValue += prob * bestEntryVal
 
         return expectedValue
 
