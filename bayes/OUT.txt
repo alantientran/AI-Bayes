@@ -1,21 +1,21 @@
-Starting on 11-13 at 18:06:54
+Starting on 11-14 at 12:28:35
 
-Question q6
+Question q8
 ===========
 
-*** Method not implemented: inferenceByVariableElimination at line 134 of inference.py
-*** FAIL: Terminated with a string exception.
+*** PASS: test_cases/q8/1-vpi-board-enter.test
+*** PASS: test_cases/q8/2-vpi-board-explore.test
 
-### Question q6: 0/4 ###
+### Question q8: 4/4 ###
 
 
-Finished at 18:06:54
+Finished at 12:28:36
 
 Provisional grades
 ==================
-Question q6: 0/4
+Question q8: 4/4
 ------------------
-Total: 0/4
+Total: 4/4
 
 Your grades are NOT yet registered.  To register your grades, make sure
 to follow your instructor's guidelines to receive credit on your project.
