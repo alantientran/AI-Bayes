@@ -219,6 +219,9 @@ def fillObsCPT(bayesNet, gameState):
 
     bottomLeftPos, topLeftPos, bottomRightPos, topRightPos = gameState.getPossibleHouses()
     
+    # We are given coordinates of the adjacent houses on the field.
+    # Need to convert them into the relative encodings so that we can compare that against
+    # the info provided from the assignment dicitonary.
     relativePos = {bottomLeftPos: BOTTOM_LEFT_VAL, bottomRightPos: BOTTOM_RIGHT_VAL,
                     topRightPos: TOP_RIGHT_VAL, topLeftPos: TOP_LEFT_VAL }
     
@@ -226,6 +229,7 @@ def fillObsCPT(bayesNet, gameState):
         houseVal = relativePos[housePos]
         for obsPos in gameState.getHouseWalls(housePos):
             obsVar = OBS_VAR_TEMPLATE % obsPos
+            # Generate a factor for each of the observed positions on the board (28)
             obsFactor = bn.Factor([obsVar], [FOOD_HOUSE_VAR, GHOST_HOUSE_VAR], bayesNet.variableDomainsDict())
             for assignment in obsFactor.getAllPossibleAssignmentDicts():
                 ghostHouseVal = assignment[GHOST_HOUSE_VAR]
@@ -233,18 +237,22 @@ def fillObsCPT(bayesNet, gameState):
                 blueAssignmentDict = {obsVar: BLUE_OBS_VAL, GHOST_HOUSE_VAR: ghostHouseVal,FOOD_HOUSE_VAR: foodHouseVal}
                 redAssignmentDict = {obsVar: RED_OBS_VAL, GHOST_HOUSE_VAR: ghostHouseVal,FOOD_HOUSE_VAR: foodHouseVal}
                 noneAssignmentDict = {obsVar: NO_OBS_VAL, GHOST_HOUSE_VAR: ghostHouseVal,FOOD_HOUSE_VAR: foodHouseVal}
+                # Create probabilities based on the specification in the project.
                 # Case 1: None
                 if houseVal != assignment[FOOD_HOUSE_VAR] and houseVal != assignment[GHOST_HOUSE_VAR]:
                     obsFactor.setProbability(blueAssignmentDict, 0)
                     obsFactor.setProbability(redAssignmentDict, 0)
                     obsFactor.setProbability(noneAssignmentDict, 1)
-                # Case 2: Ghost or Food House
                 else:
+                    # Case 2: Ghost house
                     if houseVal == ghostHouseVal and houseVal != foodHouseVal:
                         redProb = PROB_GHOST_RED
+                    # Case 3: Food house
+                    # Also, special case where food & ghost house may be assigned to same position (use food house distribution)
                     elif houseVal == foodHouseVal or houseVal == ghostHouseVal:
                         redProb = PROB_FOOD_RED
                     
+                    # Ensure that that the probability will add up to 1
                     obsFactor.setProbability(blueAssignmentDict, 1 - redProb)
                     obsFactor.setProbability(redAssignmentDict, redProb)
                     obsFactor.setProbability(noneAssignmentDict, 0)
@@ -376,6 +384,11 @@ class VPIAgent(BayesAgent):
         rightExpectedValue = 0
 
         "*** YOUR CODE HERE ***"
+        # P(foodHouse = topLeft, ghostHouse - topRight | evidence)
+        # P(foodHouse = TR, ghostHouse = TL | evidence)
+
+        # First, generate the joint distribution that infers out the evidence
+        # We are then going to calculate the probabilities based on the combinations in that table
         jointDistr = inference.inferenceByVariableElimination(self.bayesNet, HOUSE_VARS, evidence, eliminationOrder)
         for assignment in jointDistr.getAllPossibleAssignmentDicts():
             prob = jointDistr.getProbability(assignment)
