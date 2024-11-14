@@ -221,38 +221,109 @@ def fillObsCPT(bayesNet, gameState):
     bottomLeftPos, topLeftPos, bottomRightPos, topRightPos = gameState.getPossibleHouses()
     print("bottomLeft ", bottomLeftPos, "; topLeft ", topLeftPos, "; bottomRight ", bottomRightPos, "; topRight ", topRightPos)
     
-    "*** YOUR CODE HERE ***"
+    relativePos = {bottomLeftPos: BOTTOM_LEFT_VAL, bottomRightPos: BOTTOM_RIGHT_VAL,
+                    topRightPos: TOP_RIGHT_VAL, topLeftPos: TOP_LEFT_VAL }
+    
     for housePos in gameState.getPossibleHouses():
-        print("Looking at house in position: ", housePos)
         for obsPos in gameState.getHouseWalls(housePos):
             obsVar = OBS_VAR_TEMPLATE % obsPos
             obsFactor = bn.Factor([obsVar], [FOOD_HOUSE_VAR, GHOST_HOUSE_VAR], bayesNet.variableDomainsDict())
-            print("    noticed a wall at position: ", obsPos)
             # Get observed house position
             for assignment in obsFactor.getAllPossibleAssignmentDicts():
-                print(assignment)
                 # CASE 1: None observation
-                if assignment[GHOST_HOUSE_VAR] in gameState.getPossibleHouses() :
-                    print("We have a ghost house in the assignment!")
-                if assignment[FOOD_HOUSE_VAR] in gameState.getPossibleHouses() :
-                    print("We have a food house in the assignment!")
-                # if observedHouse != assignment[GHOST_HOUSE_VAR] and observedHouse != assignment[FOOD_HOUSE_VAR] :
-                #     print("CASE 1: Certainty on the None observation")
+                observedHouse = relativePos[housePos]
+                if observedHouse != assignment[GHOST_HOUSE_VAR] and observedHouse != assignment[FOOD_HOUSE_VAR] :
+                    # print("CASE 1: Certainty on the None observation")
+                    obsFactor.setProbability({
+                        obsVar: RED_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 0)
+                    obsFactor.setProbability({
+                        obsVar: BLUE_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 0)
+                    obsFactor.setProbability({
+                        obsVar: NO_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 1)
+                    bayesNet.setCPT(obsVar, obsFactor)
+                    continue
 
-                # # CASE 2: 
-                # if observedHouse == assignment[GHOST_HOUSE_VAR] :
-                #     # red with probability PROB_GHOST_RED
-                #     print("CASE 2")
-                # else: 
-                #     print("CASE 2 otherwise")
-                #     # otherwise, blue with PROB_FOOD_BLUE
-                    
-                # # CASE 3
-                # if observedHouse == assignment[FOOD_HOUSE_VAR] :
-                #     #  red with probability PROB_FOOD_RED
-                #     print("CASE 3")
-                # else :
-                #     # blue otherwise
+                # CASE 2: 
+                if observedHouse == assignment[GHOST_HOUSE_VAR] :
+                    # red with probability PROB_GHOST_RED
+                    # print("CASE 2")
+                    obsFactor.setProbability({
+                        obsVar: RED_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, PROB_GHOST_RED)
+                    obsFactor.setProbability({
+                        obsVar: BLUE_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 1-PROB_GHOST_RED)
+                    obsFactor.setProbability({
+                        obsVar: NO_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 0)
+                    bayesNet.setCPT(obsVar, obsFactor)
+                    continue
+                else: 
+                    # otherwise, blue with PROB_FOOD_BLUE
+                    # print("CASE 2 otherwise")
+                    obsFactor.setProbability({
+                        obsVar: RED_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, PROB_GHOST_RED)
+                    obsFactor.setProbability({
+                        obsVar: BLUE_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 1-PROB_GHOST_RED)
+                    obsFactor.setProbability({
+                        obsVar: NO_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 0)
+                    bayesNet.setCPT(obsVar, obsFactor)
+                    continue
+
+                # CASE 3
+                if observedHouse == assignment[FOOD_HOUSE_VAR] :
+                    #  red with probability PROB_FOOD_RED
+                    # print("CASE 3")
+                    obsFactor.setProbability({
+                        obsVar: RED_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, PROB_FOOD_RED)
+                    obsFactor.setProbability({
+                        obsVar: BLUE_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 1-PROB_FOOD_RED)
+                    obsFactor.setProbability({
+                        obsVar: NO_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 0)
+                    bayesNet.setCPT(obsVar, obsFactor)
+                    continue
+
+
+                else :
+                    # blue otherwise
+                    # print("CASE 3 otherwise")
+                    obsFactor.setProbability({
+                        obsVar: RED_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, PROB_FOOD_RED)
+                    obsFactor.setProbability({
+                        obsVar: BLUE_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 1-PROB_FOOD_RED)
+                    obsFactor.setProbability({
+                        obsVar: NO_OBS_VAL,
+                        GHOST_HOUSE_VAR: assignment[GHOST_HOUSE_VAR],
+                        FOOD_HOUSE_VAR: assignment[FOOD_HOUSE_VAR]}, 0)
+                    bayesNet.setCPT(obsVar, obsFactor)
+                    continue
+
+
                 
 
 def getMostLikelyFoodHousePosition(evidence, bayesNet, eliminationOrder):

@@ -102,8 +102,32 @@ def joinFactors(factors):
 
 
     "*** YOUR CODE HERE ***"
-    for factor in factors :
-        print(factor)
+    uncond = set()
+    cond = set()
+
+    # Build sets that only contain the new vars.
+    # We combine all of the unconditioned vars, but leave 
+    # only the combinitions of conditioned vars that aren't included 
+    # in the unconditioned vars
+    for factor in factors: 
+        uncond.update(factor.unconditionedVariables())
+        cond.update(factor.conditionedVariables())
+    cond = cond - uncond
+
+    f = Factor(uncond, cond, factors[0].variableDomainsDict())
+    print("uncond: ", uncond)
+    print("cond: ", cond)
+    
+    # We could look through every combination of assignments in all of the
+    # given factors, but that would be difficult to verify we are combining
+    # the right info. Instead, we'll just loop over the new assignments
+    # and find the appearances of that in the existing factors.
+    for assignment in f.getAllPossibleAssignmentDicts() :
+        prob = 1
+        for factor in factors :
+            prob *= factor.getProbability(assignment)
+        f.setProbability(assignment, prob)
+    return f
 
 def eliminateWithCallTracking(callTrackingList=None):
 
@@ -166,8 +190,35 @@ def eliminateWithCallTracking(callTrackingList=None):
                     "unconditionedVariables: " + str(factor.unconditionedVariables()))
 
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        uncond = factor.unconditionedVariables().copy()
+        for var in factor.unconditionedVariables() :
+            if var == eliminationVariable :
+                uncond.remove(var)
+        f = Factor(uncond, factor.conditionedVariables(), factor.variableDomainsDict())
+        print(f)
+        
+        for assign in f.getAllPossibleAssignmentDicts() : 
+            prob = 0
+            print(assign)
+            for factor_assign in factor.getAllPossibleAssignmentDicts() :
+                # We want to find all matches of the smaller combination inside
+                # the larger CPT (i.e. Weather = Rain and Ground = Wet inside of a larger
+                # distribution that also contains Temperature = Cold; add probabilites that 
+                # match the two conditions in the marginal).
 
+                # Used an LLM to help with this line.
+                compatible = all(
+                    assign[var] == factor_assign[var]
+                    for var in assign if var in factor_assign
+                )
+
+                if compatible:
+                    prob += factor.getProbability(factor_assign)  # Accumulate probability
+
+            f.setProbability(assign, prob)
+                    
+# 
+        return f
     return eliminate
 
 eliminate = eliminateWithCallTracking()
@@ -221,5 +272,24 @@ def normalize(factor):
                             str(factor))
 
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    variableDomainsDict = factor.variableDomainsDict()
+    totalProb = 0  
+    for assign in factor.getAllPossibleAssignmentDicts() :
+        totalProb += factor.getProbability(assign)
+    conditionedVariables = set(factor.conditionedVariables())
 
+    unconditionedVariables = set(factor.unconditionedVariables())
+    for var in factor.unconditionedVariables():
+        if len(variableDomainsDict[var]) == 1:
+            conditionedVariables.add(var)
+            unconditionedVariables.remove(var)
+    
+    f = Factor(unconditionedVariables, conditionedVariables, variableDomainsDict)
+
+
+
+    for assign in f.getAllPossibleAssignmentDicts() :
+        if (totalProb > 0) :
+            f.setProbability(assign, factor.getProbability(assign) / totalProb)
+    
+    return f
