@@ -195,7 +195,6 @@ def eliminateWithCallTracking(callTrackingList=None):
             if var == eliminationVariable :
                 uncond.remove(var)
         f = Factor(uncond, factor.conditionedVariables(), factor.variableDomainsDict())
-        print(f)
         
         for assign in f.getAllPossibleAssignmentDicts() : 
             prob = 0
@@ -205,20 +204,16 @@ def eliminateWithCallTracking(callTrackingList=None):
                 # the larger CPT (i.e. Weather = Rain and Ground = Wet inside of a larger
                 # distribution that also contains Temperature = Cold; add probabilites that 
                 # match the two conditions in the marginal).
-
-                # Used an LLM to help with this line.
                 compatible = all(
-                    assign[var] == factor_assign[var]
-                    for var in assign if var in factor_assign
+                    assign[var] == factor_assign[var] for var in assign if var in factor_assign
                 )
 
                 if compatible:
-                    prob += factor.getProbability(factor_assign)  # Accumulate probability
+                    prob += factor.getProbability(factor_assign)
 
             f.setProbability(assign, prob)
-                    
-# 
         return f
+    
     return eliminate
 
 eliminate = eliminateWithCallTracking()
